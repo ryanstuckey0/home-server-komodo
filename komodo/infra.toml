@@ -1,0 +1,8 @@
+[[stack]]
+name = "traefik"
+description = "Traefik reverse proxy"
+
+[stack.config]
+server = "TrueNAS"
+file_paths = ["/stacks/infra/traefik/traefik.yml"]
+repo = "ryanstuckey0/home-server-komodo"
