@@ -13,6 +13,8 @@ services:
       - "traefik.http.routers.traefik.entrypoints=web"
       - "traefik.http.routers.traefik.service=api@internal"
       - "traefik.routers.traefik.service=api@internal"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 networks:
   default:
     external:
