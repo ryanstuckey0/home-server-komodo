@@ -7,3 +7,13 @@ server = "TrueNAS"
 file_paths = ["stacks/infra/traefik/compose.yaml"]
 repo = "ryanstuckey0/home-server-komodo"
 branch = "feature/init-komodo"
+
+[[stack]]
+name = "whoami"
+description = "A simple HTTP server that returns information about the incoming request. Used for testing Traefik routing."
+
+[stack.config]
+server = "TrueNAS"
+file_paths = ["stacks/infra/whoami/compose.yaml"]
+repo = "ryanstuckey0/home-server-komodo"
+branch = "feature/init-komodo"
