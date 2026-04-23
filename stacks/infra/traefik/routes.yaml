@@ -19,4 +19,4 @@ http:
     komodo:
       loadBalancer:
         servers:
-          - url: "http://host.docker.internal:30160"
+          - url: "http://periphery:30160"
