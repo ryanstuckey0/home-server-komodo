@@ -4,3 +4,7 @@ services:
     labels:
       - "traefik.http.routers.whoami.rule=Host(`whoami.beansrn.com`)"
       - "traefik.http.routers.whoami.entrypoints=web"
+networks:
+  default:
+    external:
+      name: traefik_default

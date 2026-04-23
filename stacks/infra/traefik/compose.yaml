@@ -7,3 +7,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./traefik.yaml:/etc/traefik/traefik.yaml
+networks:
+  default:
+    external:
+      name: traefik_default
