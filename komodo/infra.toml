@@ -6,3 +6,4 @@ description = "Traefik reverse proxy"
 server = "TrueNAS"
 file_paths = ["stacks/infra/traefik/compose.yaml"]
 repo = "ryanstuckey0/home-server-komodo"
+branch = "feature/init-komodo"
