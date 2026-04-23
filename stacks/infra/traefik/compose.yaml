@@ -17,5 +17,4 @@ services:
       - "host.docker.internal:host-gateway"
 networks:
   default:
-    external: true
     name: traefik_default
