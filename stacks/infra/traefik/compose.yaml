@@ -8,8 +8,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./traefik.yaml:/etc/traefik/traefik.yaml
     labels:
-      - "traefik.routers.ui.rule=Host(`traefik.beansrn.com`)"
-      - "traefik.routers.ui.entrypoints=web"
+      - "traefik.routers.traefik.rule=Host(`traefik.beansrn.com`)"
+      - "traefik.routers.traefik.entrypoints=web"
 networks:
   default:
     external:
