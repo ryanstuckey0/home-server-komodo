@@ -1,0 +1,9 @@
+api:
+  insecure: true
+
+providers:
+  docker: {}
+
+entrypoints:
+  web:
+    address: ":80"
