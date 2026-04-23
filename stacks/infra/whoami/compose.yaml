@@ -3,5 +3,4 @@ services:
     image: traefik/whoami
     labels:
       - "traefik.http.routers.whoami.rule=Host(`whoami.beansrn.com`)"
-    networks:
-      - traefik_default
+      - "traefik.http.routers.whoami.entrypoints=web"
