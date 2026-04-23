@@ -7,3 +7,7 @@ providers:
 entrypoints:
   web:
     address: ":80"
+
+providers:
+  file:
+    directory: /etc/traefik/dynamic

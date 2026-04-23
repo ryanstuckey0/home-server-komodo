@@ -7,6 +7,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./traefik.yaml:/etc/traefik/traefik.yaml
+      - ./routes.yaml:/etc/traefik/dynamic/routes.yaml
     labels:
       - "traefik.http.routers.traefik.rule=Host(`traefik.beansrn.com`)"
       - "traefik.http.routers.traefik.entrypoints=web"

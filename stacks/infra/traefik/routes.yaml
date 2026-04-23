@@ -1,0 +1,13 @@
+http:
+  routers:
+    nas:
+      rule: "Host(`nas.beansrn.com`)"
+      entryPoints:
+        - web
+      service: nas
+  
+  services:
+    nas:
+      loadBalancer:
+        servers:
+          - url: "http://beansrn.com:81"
