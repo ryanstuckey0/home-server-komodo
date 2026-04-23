@@ -4,7 +4,7 @@ api:
 providers:
   docker: {}
   file:
-    directory: /etc/traefik/dynamic
+    filename: /etc/traefik/routes.yaml
 
 entrypoints:
   web:
