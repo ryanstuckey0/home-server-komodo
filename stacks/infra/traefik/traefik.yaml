@@ -7,3 +7,12 @@ providers:
 entrypoints:
   web:
     address: ":80"
+
+traefik:
+  http:
+    routers:
+      traefik:
+        rule: "Host(`traefik.beansrn.com`)"
+        entryPoints:
+          - web
+        service: api@internal
