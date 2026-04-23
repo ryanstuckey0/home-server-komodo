@@ -6,6 +6,7 @@ providers:
   docker: {}
   file:
     filename: /etc/traefik/routes.yaml
+    watch: true
 
 entrypoints:
   web:
