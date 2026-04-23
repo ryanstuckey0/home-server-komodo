@@ -1,3 +1,7 @@
+api:
+  insecure: false
+  dashboard: true
+
 providers:
   docker: {}
   file:
