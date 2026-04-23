@@ -11,6 +11,7 @@ services:
       - "traefik.enable=true"
       - "traefik.routers.traefik.rule=Host(`traefik.beansrn.com`)"
       - "traefik.routers.traefik.entrypoints=web"
+      - "traefik.http.routers.traefik.service=api@internal"
 networks:
   default:
     external:
