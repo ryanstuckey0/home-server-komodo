@@ -1,0 +1,22 @@
+http:
+  routers:
+    nas:
+      rule: "Host(`nas.beansrn.com`)"
+      entryPoints:
+        - web
+      service: nas
+    komodo:
+      rule: "Host(`komodo.beansrn.com`)"
+      entryPoints:
+        - web
+      service: komodo
+  
+  services:
+    nas:
+      loadBalancer:
+        servers:
+          - url: "http://host.docker.internal:81"
+    komodo:
+      loadBalancer:
+        servers:
+          - url: "http://host.docker.internal:30160"
