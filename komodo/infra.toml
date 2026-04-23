@@ -4,5 +4,5 @@ description = "Traefik reverse proxy"
 
 [stack.config]
 server = "TrueNAS"
-file_paths = ["/stacks/infra/traefik/compose.yaml"]
+file_paths = ["stacks/infra/traefik/compose.yaml"]
 repo = "ryanstuckey0/home-server-komodo"
