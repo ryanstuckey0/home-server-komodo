@@ -6,7 +6,8 @@ services:
       - "443:443"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /etc/traefik:/etc/traefik/
+      - ./traefik.yaml:/etc/traefik/traefik.yaml
+      - ./routes.yaml:/etc/traefik/routes.yaml
     labels:
       - "traefik.http.routers.traefik.rule=Host(`tf.rp5.beansrn.com`)"
       - "traefik.http.routers.traefik.entrypoints=web,websecure"
