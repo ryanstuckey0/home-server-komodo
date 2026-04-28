@@ -7,3 +7,6 @@ server = "rp5"
 file_paths = ["stacks/rp5/infra/traefik/compose.yaml"]
 repo = "ryanstuckey0/home-server-komodo"
 branch = "feature/split-to-pi"
+environment = """
+CF_DNS_API_TOKEN = [[CF_DNS_API_TOKEN]]
+"""
