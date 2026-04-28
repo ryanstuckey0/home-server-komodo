@@ -19,7 +19,7 @@ services:
       - "853:853/udp"
       # AdGuard setup wizard (only needed on first run; can be removed after)
       - "3000:3000/tcp"
-      - "80:80/tcp" # Only needed for initial setup, can be removed after
+      - "81:80/tcp" # Only needed for initial setup, can be removed after
 
     networks:
       - traefik_default
