@@ -16,18 +16,18 @@ entrypoints:
     #     entryPoint:
     #       to: websecure
     #       scheme: https
-  # websecure:
-  #   address: ":443"
+  websecure:
+    address: ":443"
 
-# certificatesResolvers:
-#   letsencrypt:
-#     acme:
-#       email: "ryanstuckey0@gmail.com"
-#       storage: /etc/traefik/acme.json
-#       dnsChallenge:
-#         provider: cloudflare
-#         delayBeforeCheck: "30"
-#         resolvers:
-#           - "1.1.1.1:53"
-#           - "8.8.8.8:53"
+certificatesResolvers:
+  letsencrypt:
+    acme:
+      email: "ryanstuckey0@gmail.com"
+      storage: /etc/traefik/acme.json
+      dnsChallenge:
+        provider: cloudflare
+        delayBeforeCheck: "30"
+        resolvers:
+          - "1.1.1.1:53"
+          - "8.8.8.8:53"
   

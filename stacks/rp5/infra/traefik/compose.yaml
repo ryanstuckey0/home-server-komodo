@@ -15,6 +15,8 @@ services:
       - "traefik.routers.traefik.service=api@internal"
     extra_hosts:
       - "host.docker.internal:host-gateway"
+    environment:
+      - CF_DNS_API_TOKEN=[[CF_DNS_API_TOKEN]]
 networks:
   default:
     name: traefik_default
