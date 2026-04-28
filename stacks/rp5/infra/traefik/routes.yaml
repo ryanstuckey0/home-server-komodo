@@ -1,7 +1,7 @@
 http:
   routers:
     komodo:
-      rule: "Host(`komodo.beansrn.com`)"
+      rule: "Host(`km.beansrn.com`)"
       entryPoints:
         - web
       service: komodo
