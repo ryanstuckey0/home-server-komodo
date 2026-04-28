@@ -12,7 +12,6 @@ services:
       - "traefik.http.routers.traefik.rule=Host(`tf.rp5.beansrn.com`)"
       - "traefik.http.routers.traefik.entrypoints=websecure"
       - "traefik.http.routers.traefik.tls=true"
-      - "traefik.http.routers.traefik.tls.certresolver=letsencrypt"
       - "traefik.http.routers.traefik.service=api@internal"
     extra_hosts:
       - "host.docker.internal:host-gateway"
