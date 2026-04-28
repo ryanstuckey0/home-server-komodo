@@ -1,11 +1,11 @@
 http:
   routers:
     komodo:
-      rule: "Host(`doesntwork.beansrn.com`)"
+      rule: "Host(`km.beansrn.com`)"
       entryPoints:
-        - web
         - websecure
       service: komodo
+      tls: {}
 
   services:
     komodo:
