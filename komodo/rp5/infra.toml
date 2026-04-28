@@ -9,4 +9,5 @@ repo = "ryanstuckey0/home-server-komodo"
 branch = "feature/split-to-pi"
 environment = """
 CF_DNS_API_TOKEN = [[CF_DNS_API_TOKEN]]
+TRAEFIK_CERTIFICATESRESOLVERS_LETSENCRYPT_ACME_EMAIL = [[EMAIL_FOR_LETSENCRYPT]]
 """

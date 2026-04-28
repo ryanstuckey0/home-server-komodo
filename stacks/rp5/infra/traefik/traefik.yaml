@@ -18,11 +18,19 @@ entrypoints:
           scheme: https
   websecure:
     address: ":443"
+    http:
+      tls:
+        certResolver: letsencrypt
+        domains:
+          - main: "beansrn.com"
+            sans:
+              - "*.beansrn.com"
+              - "*.rp5.beansrn.com"
+              - "*.nas.beansrn.com"
 
 certificatesResolvers:
   letsencrypt:
     acme:
-      email: "ryanstuckey0@gmail.com"
       storage: /etc/traefik/acme.json
       dnsChallenge:
         provider: cloudflare
