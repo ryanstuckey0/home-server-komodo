@@ -1,0 +1,33 @@
+api:
+  insecure: true
+  dashboard: true
+
+providers:
+  docker: {}
+  file:
+    filename: /etc/traefik/routes.yaml
+    watch: true
+
+entrypoints:
+  web:
+    address: ":80"
+    # http:
+    #   redirections:
+    #     entryPoint:
+    #       to: websecure
+    #       scheme: https
+  # websecure:
+  #   address: ":443"
+
+# certificatesResolvers:
+#   letsencrypt:
+#     acme:
+#       email: "ryanstuckey0@gmail.com"
+#       storage: /etc/traefik/acme.json
+#       dnsChallenge:
+#         provider: cloudflare
+#         delayBeforeCheck: "30"
+#         resolvers:
+#           - "1.1.1.1:53"
+#           - "8.8.8.8:53"
+  

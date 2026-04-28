@@ -3,13 +3,13 @@ services:
     image: traefik:v3.6
     ports:
       - "80:80"
-      - "8080:8080"
+      - "443:443"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./traefik.yaml:/etc/traefik/traefik.yaml
       - ./routes.yaml:/etc/traefik/routes.yaml
     labels:
-      - "traefik.http.routers.traefik.rule=Host(`traefik.beansrn.com`)"
+      - "traefik.http.routers.traefik.rule=Host(`tf.rp5.beansrn.com`)"
       - "traefik.http.routers.traefik.entrypoints=web"
       - "traefik.http.routers.traefik.service=api@internal"
       - "traefik.routers.traefik.service=api@internal"

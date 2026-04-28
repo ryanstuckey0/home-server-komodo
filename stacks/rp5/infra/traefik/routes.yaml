@@ -1,0 +1,13 @@
+http:
+  routers: {}
+    # komodo:
+    #   rule: "Host(`komodo.beansrn.com`)"
+    #   entryPoints:
+    #     - web
+    #   service: komodo
+  
+  services: {}
+    # komodo:
+    #   loadBalancer:
+    #     servers:
+    #       - url: "http://host.docker.internal:9120"

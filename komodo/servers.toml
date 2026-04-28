@@ -1,0 +1,9 @@
+[[server]]
+name = "RaspberryPi5"
+[server.config]
+enabled = true
+
+[[server]]
+name = "TrueNAS"
+[server.config]
+enabled = true
