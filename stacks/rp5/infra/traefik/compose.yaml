@@ -10,9 +10,9 @@ services:
       - ./routes.yaml:/etc/traefik/routes.yaml
     labels:
       - "traefik.http.routers.traefik.rule=Host(`tf.rp5.beansrn.com`)"
-      - "traefik.http.routers.traefik.entrypoints=web"
-      # - "traefik.http.routers.traefik.tls=true"
-      # - "traefik.http.routers.traefik.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.traefik.entrypoints=web,websecure"
+      - "traefik.http.routers.traefik.tls=true"
+      - "traefik.http.routers.traefik.tls.certresolver=letsencrypt"
       - "traefik.http.routers.traefik.service=api@internal"
       - "traefik.routers.traefik.service=api@internal"
     extra_hosts:
