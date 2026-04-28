@@ -8,6 +8,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./traefik.yaml:/etc/traefik/traefik.yaml
       - ./routes.yaml:/etc/traefik/routes.yaml
+      - ./acme.json:/etc/traefik/acme.json
     labels:
       - "traefik.http.routers.traefik.rule=Host(`tf.rp5.beansrn.com`)"
       - "traefik.http.routers.traefik.entrypoints=websecure"
