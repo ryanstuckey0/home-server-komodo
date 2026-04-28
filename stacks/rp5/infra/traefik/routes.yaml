@@ -1,4 +1,14 @@
 http:
-  routers: {}
+  routers:
+    komodo:
+      rule: "Host(`doesntwork.beansrn.com`)"
+      entryPoints:
+        - web
+        - websecure
+      service: komodo
 
-  services: {}
+  services:
+    komodo:
+      loadBalancer:
+        servers:
+          - url: "http://host.docker.internal:9120"
