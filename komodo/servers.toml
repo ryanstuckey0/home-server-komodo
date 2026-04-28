@@ -1,9 +1,0 @@
-[[server]]
-name = "rp5"
-[server.config]
-enabled = true
-
-[[server]]
-name = "truenas"
-[server.config]
-enabled = true
