@@ -6,7 +6,7 @@ description = "Traefik reverse proxy"
 server = "rp5"
 file_paths = ["stacks/rp5/infra/traefik/compose.yaml"]
 repo = "ryanstuckey0/home-server-komodo"
-branch = "feature/split-to-pi"
+branch = "main"
 environment = """
 CF_DNS_API_TOKEN = [[CF_DNS_API_TOKEN]]
 TRAEFIK_CERTIFICATESRESOLVERS_LETSENCRYPT_ACME_EMAIL = [[EMAIL_FOR_LETSENCRYPT]]
@@ -20,4 +20,14 @@ description = "AdGuard Home DNS server"
 server = "rp5"
 file_paths = ["stacks/rp5/infra/adguard/compose.yaml"]
 repo = "ryanstuckey0/home-server-komodo"
-branch = "feature/split-to-pi"
+branch = "main"
+
+[[stack]]
+name = "unbound"
+description = "Unbound DNS server for local network"
+
+[[stack.config]]
+server = "rp5"
+file_paths = ["stacks/rp5/infra/unbound/compose.yaml"]
+repo = "ryanstuckey0/home-server-komodo"
+branch = "main"
