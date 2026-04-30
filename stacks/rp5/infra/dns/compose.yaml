@@ -14,7 +14,7 @@ services:
     volumes:
       - ./unbound-lan.conf:/opt/unbound/etc/unbound/unbound.conf:ro
     networks:
-      - dns_network
+      - traefik_default
     healthcheck:
       disable: true
       test: ["CMD-SHELL", "drill @127.0.0.1 km.beansrn.com || exit 1"]
@@ -38,7 +38,7 @@ services:
     volumes:
       - ./unbound-ts.conf:/opt/unbound/etc/unbound/unbound.conf:ro
     networks:
-      - dns_network
+      - traefik_default
     healthcheck:
       disable: true
       test: ["CMD-SHELL", "drill @127.0.0.1 km.beansrn.com || exit 1"]
@@ -54,7 +54,7 @@ services:
     volumes:
       - ./unbound-recursive.conf:/opt/unbound/etc/unbound/unbound.conf:ro
     networks:
-      - dns_network
+      - traefik_default
 
   adguard-home:
     image: adguard/adguardhome:latest
@@ -76,7 +76,6 @@ services:
 
     networks:
       - traefik_default
-      - dns_network
 
     labels:
       traefik.http.routers.adguard.rule: "Host(`ag.beansrn.com`)"
@@ -90,4 +89,3 @@ volumes:
 networks:
   traefik_default:
     external: true
-  dns_network: {}
