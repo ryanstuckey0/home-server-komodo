@@ -15,6 +15,12 @@ services:
       - ./unbound-lan.conf:/opt/unbound/etc/unbound/unbound.conf:ro
     networks:
       - dns_network
+    healthcheck:
+      test: ["CMD-SHELL", "drill @127.0.0.1 km.beansrn.com || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
 
   unbound-ts:
     image: mvance/unbound-rpi:latest
@@ -32,6 +38,12 @@ services:
       - ./unbound-ts.conf:/opt/unbound/etc/unbound/unbound.conf:ro
     networks:
       - dns_network
+    healthcheck:
+      test: ["CMD-SHELL", "drill @127.0.0.1 km.beansrn.com || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
 
   unbound-recursive:
     image: mvance/unbound-rpi:latest
