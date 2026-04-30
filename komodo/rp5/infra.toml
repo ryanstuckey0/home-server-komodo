@@ -31,3 +31,13 @@ server = "rp5"
 file_paths = ["stacks/rp5/infra/unbound/compose.yaml"]
 repo = "ryanstuckey0/home-server-komodo"
 branch = "main"
+
+[[stack]]
+name = "dns-stack"
+description = "Unbound and AdGuard Home DNS servers for LAN and Tailscale"
+
+[stack.config]
+server = "rp5"
+file_paths = ["stacks/rp5/infra/dns/compose.yaml"]
+repo = "ryanstuckey0/home-server-komodo"
+branch = "main"
