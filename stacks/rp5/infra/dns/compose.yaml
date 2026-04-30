@@ -69,6 +69,10 @@ services:
       traefik.http.routers.adguard.entrypoints: "websecure"
       traefik.http.services.adguard.loadbalancer.server.port: "80"
 
+volumes:
+  adguard_work:
+  adguard_conf:
+
 networks:
   traefik_default:
     external: true
