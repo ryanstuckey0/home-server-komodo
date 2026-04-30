@@ -16,6 +16,7 @@ services:
     networks:
       - dns_network
     healthcheck:
+      disable: true
       test: ["CMD-SHELL", "drill @127.0.0.1 km.beansrn.com || exit 1"]
       interval: 30s
       timeout: 10s
@@ -39,6 +40,7 @@ services:
     networks:
       - dns_network
     healthcheck:
+      disable: true
       test: ["CMD-SHELL", "drill @127.0.0.1 km.beansrn.com || exit 1"]
       interval: 30s
       timeout: 10s
