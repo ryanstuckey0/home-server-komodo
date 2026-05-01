@@ -54,7 +54,9 @@ services:
     volumes:
       - ./unbound-recursive.conf:/opt/unbound/etc/unbound/unbound.conf:ro
     networks:
-      - traefik_default
+      traefik_default:
+      dns_internal:
+        ipv4_address: 10.10.10.2
 
   adguard-home:
     image: adguard/adguardhome:latest
@@ -69,13 +71,14 @@ services:
     ports:
       # No DNS ports needed
       # unbound will forward to AdGuard within Docker network
-      
+
       # AdGuard setup wizard (only needed on first run; can be removed after)
       - "3000:3000/tcp"
       - "81:80/tcp" # Only needed if Traefik is not routing
 
     networks:
       - traefik_default
+      - dns_internal
 
     labels:
       traefik.http.routers.adguard.rule: "Host(`ag.beansrn.com`)"
@@ -89,3 +92,8 @@ volumes:
 networks:
   traefik_default:
     external: true
+  dns_internal:
+    internal: true
+    ipam:
+      config:
+        - subnet: 10.10.10.0/24
