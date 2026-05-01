@@ -77,8 +77,9 @@ services:
       - "81:80/tcp" # Only needed if Traefik is not routing
 
     networks:
-      - traefik_default
-      - dns_internal
+      traefik_default:
+      dns_internal:
+        ipv4_address: 10.10.10.3
 
     labels:
       traefik.docker.network: "traefik_default"
