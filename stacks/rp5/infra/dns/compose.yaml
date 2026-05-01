@@ -50,8 +50,8 @@ services:
       - "53:53/udp"
 
       # AdGuard setup wizard (only needed on first run; can be removed after)
-      - "3000:3000/tcp"
-      - "81:80/tcp" # Only needed if Traefik is not routing
+      # - "3000:3000/tcp"
+      # - "81:80/tcp" # Only needed if Traefik is not routing
 
     networks:
       traefik_default:
