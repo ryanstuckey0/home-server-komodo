@@ -81,6 +81,7 @@ services:
       - dns_internal
 
     labels:
+      traefik.docker.network: "traefik_default"
       traefik.http.routers.adguard.rule: "Host(`ag.beansrn.com`)"
       traefik.http.routers.adguard.entrypoints: "websecure"
       traefik.http.services.adguard.loadbalancer.server.port: "80"
