@@ -3,19 +3,12 @@ services:
     image: mvance/unbound-rpi:latest
     container_name: unbound-lan
     restart: unless-stopped
-    depends_on:
-      - adguard-home
-    ports:
-      # DNS (TCP + UDP)
-      - "192.168.1.2:53:53/tcp"
-      - "192.168.1.2:53:53/udp"
-      # DNS-over-TLS
-      - "192.168.1.2:853:853/udp"
     volumes:
       - ./unbound-lan.conf:/opt/unbound/etc/unbound/unbound.conf:ro
     networks:
-      - traefik_default
-      - dns_internal
+      traefik_default:
+      dns_internal:
+        ipv4_address: 10.10.10.3
     healthcheck:
       test: ["CMD-SHELL", "drill @127.0.0.1 km.beansrn.com || exit 1"]
       interval: 30s
@@ -27,19 +20,12 @@ services:
     image: mvance/unbound-rpi:latest
     container_name: unbound-ts
     restart: unless-stopped
-    depends_on:
-      - adguard-home
-    ports:
-      # DNS (TCP + UDP)
-      - "100.103.185.17:53:53/tcp"
-      - "100.103.185.17:53:53/udp"
-      # DNS-over-TLS
-      - "100.103.185.17:853:853/tcp"
     volumes:
       - ./unbound-ts.conf:/opt/unbound/etc/unbound/unbound.conf:ro
     networks:
-      - traefik_default
-      - dns_internal
+      traefik_default:
+      dns_internal:
+        ipv4_address: 10.10.10.4
     healthcheck:
       test: ["CMD-SHELL", "drill @127.0.0.1 km.beansrn.com || exit 1"]
       interval: 30s
@@ -47,39 +33,30 @@ services:
       retries: 3
       start_period: 30s
 
-  unbound-recursive:
-    image: mvance/unbound-rpi:latest
-    container_name: unbound-recursive
-    restart: unless-stopped
-    volumes:
-      - ./unbound-recursive.conf:/opt/unbound/etc/unbound/unbound.conf:ro
-    networks:
-      traefik_default:
-      dns_internal:
-        ipv4_address: 10.10.10.2
-
   adguard-home:
     image: adguard/adguardhome:latest
     container_name: adguard-home
     restart: unless-stopped
     depends_on:
-      - unbound-recursive
+      - unbound-lan
+      - unbound-ts
     volumes:
       - adguard_work:/opt/adguardhome/work
       - adguard_conf:/opt/adguardhome/conf
 
     ports:
-      # No DNS ports needed
-      # unbound will forward to AdGuard within Docker network
+      # DNS (TCP + UDP) - LAN and Tailscale
+      - "53:53/tcp"
+      - "53:53/udp"
 
       # AdGuard setup wizard (only needed on first run; can be removed after)
-      - "3000:3000/tcp"
-      - "81:80/tcp" # Only needed if Traefik is not routing
+      # - "3000:3000/tcp"
+      # - "81:80/tcp" # Only needed if Traefik is not routing
 
     networks:
       traefik_default:
       dns_internal:
-        ipv4_address: 10.10.10.3
+        ipv4_address: 10.10.10.2
 
     labels:
       traefik.enable: "true"
