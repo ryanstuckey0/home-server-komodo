@@ -17,7 +17,6 @@ services:
       - traefik_default
       - dns_internal
     healthcheck:
-      disable: true
       test: ["CMD-SHELL", "drill @127.0.0.1 km.beansrn.com || exit 1"]
       interval: 30s
       timeout: 10s
@@ -42,7 +41,6 @@ services:
       - traefik_default
       - dns_internal
     healthcheck:
-      disable: true
       test: ["CMD-SHELL", "drill @127.0.0.1 km.beansrn.com || exit 1"]
       interval: 30s
       timeout: 10s
@@ -84,6 +82,7 @@ services:
         ipv4_address: 10.10.10.3
 
     labels:
+      traefik.enable: "true"
       traefik.docker.network: "traefik_default"
       traefik.http.routers.adguard.rule: "Host(`ag.beansrn.com`)"
       traefik.http.routers.adguard.entrypoints: "websecure"

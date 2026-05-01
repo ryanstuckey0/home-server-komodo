@@ -10,6 +10,7 @@ services:
       - ./routes.yaml:/etc/traefik/routes.yaml
       - ./acme.json:/etc/traefik/acme.json
     labels:
+      - "traefik.enable=true"
       - "traefik.http.routers.traefik.rule=Host(`tf.rp5.beansrn.com`)"
       - "traefik.http.routers.traefik.entrypoints=websecure"
       - "traefik.http.routers.traefik.tls=true"

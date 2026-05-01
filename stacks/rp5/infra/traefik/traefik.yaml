@@ -3,7 +3,8 @@ api:
   dashboard: true
 
 providers:
-  docker: {}
+  docker:
+    exposedByDefault: false
   file:
     filename: /etc/traefik/routes.yaml
     watch: true
