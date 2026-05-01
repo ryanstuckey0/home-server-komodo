@@ -13,26 +13,6 @@ TRAEFIK_CERTIFICATESRESOLVERS_LETSENCRYPT_ACME_EMAIL = [[EMAIL_FOR_LETSENCRYPT]]
 """
 
 [[stack]]
-name = "adguard"
-description = "AdGuard Home DNS server"
-
-[stack.config]
-server = "rp5"
-file_paths = ["stacks/rp5/infra/adguard/compose.yaml"]
-repo = "ryanstuckey0/home-server-komodo"
-branch = "main"
-
-[[stack]]
-name = "unbound"
-description = "Unbound DNS server for local network"
-
-[stack.config]
-server = "rp5"
-file_paths = ["stacks/rp5/infra/unbound/compose.yaml"]
-repo = "ryanstuckey0/home-server-komodo"
-branch = "main"
-
-[[stack]]
 name = "dns-stack"
 description = "Unbound and AdGuard Home DNS servers for LAN and Tailscale"
 
