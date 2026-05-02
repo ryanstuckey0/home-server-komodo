@@ -8,7 +8,7 @@ services:
     environment:
       - DOMAIN=https://vw.beansrn.com
       - SIGNUPS_ALLOWED=false
-      - ADMIN_TOKEN
+      - ADMIN_TOKEN=${VAULTWARDEN_ADMIN_TOKEN}
     networks:
       - traefik_default
     labels:
