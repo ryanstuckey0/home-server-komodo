@@ -4,8 +4,10 @@ services:
     container_name: homeassistant
     restart: unless-stopped
     network_mode: host
+    privileged: true
     volumes:
       - /opt/appdata/homeassistant:/config
       - /etc/localtime:/etc/localtime:ro
+      - /run/dbus:/run/dbus:ro
     environment:
       TZ: America/New_York
