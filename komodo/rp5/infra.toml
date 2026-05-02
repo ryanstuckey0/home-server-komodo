@@ -22,7 +22,7 @@ file_paths = ["stacks/rp5/apps/vaultwarden/compose.yaml"]
 repo = "ryanstuckey0/home-server-komodo"
 branch = "main"
 environment = """
-VAULTWARDEN_ADMIN_TOKEN = [[VAULTWARDEN_ADMIN_TOKEN]]
+ADMIN_TOKEN = [[VAULTWARDEN_ADMIN_TOKEN]]
 """
 
 [[stack]]
