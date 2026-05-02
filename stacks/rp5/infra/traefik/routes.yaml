@@ -7,8 +7,20 @@ http:
       service: komodo
       tls: {}
 
+    homeassistant:
+      rule: "Host(`ha.beansrn.com`)"
+      entryPoints:
+        - websecure
+      service: homeassistant
+      tls: {}
+
   services:
     komodo:
       loadBalancer:
         servers:
           - url: "http://host.docker.internal:9120"
+
+    homeassistant:
+      loadBalancer:
+        servers:
+          - url: "http://host.docker.internal:8123"
