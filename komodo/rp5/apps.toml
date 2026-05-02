@@ -1,4 +1,14 @@
 [[stack]]
+name = "home-assistant"
+description = "Home Assistant home automation platform"
+
+[stack.config]
+server = "rp5"
+file_paths = ["stacks/rp5/apps/homeassistant/compose.yaml"]
+repo = "ryanstuckey0/home-server-komodo"
+branch = "main"
+
+[[stack]]
 name = "vaultwarden"
 description = "Vaultwarden password manager"
 
