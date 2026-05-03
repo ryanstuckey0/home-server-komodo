@@ -7,7 +7,7 @@ services:
     privileged: true
     volumes:
       - /opt/appdata/homeassistant:/config
-      - external.yaml:/config/external.yaml:ro
+      - ./external.yaml:/config/external.yaml:ro
       - /etc/localtime:/etc/localtime:ro
       - /run/dbus:/run/dbus:ro
     environment:
