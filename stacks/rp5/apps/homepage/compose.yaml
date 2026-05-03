@@ -1,0 +1,39 @@
+services:
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    restart: unless-stopped
+    environment:
+      - HOMEPAGE_VAR_ADGUARD_USERNAME=${HOMEPAGE_VAR_ADGUARD_USERNAME}
+      - HOMEPAGE_VAR_ADGUARD_PASSWORD=${HOMEPAGE_VAR_ADGUARD_PASSWORD}
+      - HOMEPAGE_VAR_HA_TOKEN=${HOMEPAGE_VAR_HA_TOKEN}
+    volumes:
+      - ./config:/app/config
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - default
+      - traefik_default
+    labels:
+      traefik.enable: "true"
+      traefik.docker.network: "traefik_default"
+      traefik.http.routers.homepage.rule: "Host(`beansrn.com`)"
+      traefik.http.routers.homepage.entrypoints: "websecure"
+      traefik.http.services.homepage.loadbalancer.server.port: "3000"
+
+  glances:
+    image: nicolargo/glances:latest-full
+    container_name: glances
+    restart: unless-stopped
+    privileged: true
+    pid: host
+    environment:
+      - GLANCES_OPT=-w --disable-webui
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - default
+
+networks:
+  default: {}
+  traefik_default:
+    external: true

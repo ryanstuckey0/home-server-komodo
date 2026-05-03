@@ -1,5 +1,9 @@
 # home-server-komodo
 
+## Helpful Docs
+
+- [Home Assistant in Docker Compose](https://www.home-assistant.io/installation/alternative/#docker-compose)
+
 ## Hardware
 
 - Raspberry Pi 5 (RP5)

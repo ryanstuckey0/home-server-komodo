@@ -1,0 +1,14 @@
+- glances:
+    url: http://glances:61208
+    cpu: true
+    mem: true
+    disk: /
+    expanded: true
+    cputemp: true
+
+- datetime:
+    text_size: xl
+    format:
+      timeStyle: short
+      dateStyle: short
+      hourCycle: h23

@@ -1,0 +1,35 @@
+- Infrastructure:
+    - AdGuard Home:
+        href: https://ag.beansrn.com
+        description: DNS filtering & ad blocking
+        icon: adguard-home.png
+        widget:
+          type: adguardhome
+          url: https://ag.beansrn.com
+          username: "{{HOMEPAGE_VAR_ADGUARD_USERNAME}}"
+          password: "{{HOMEPAGE_VAR_ADGUARD_PASSWORD}}"
+    - Traefik:
+        href: https://tf.rp5.beansrn.com
+        description: Reverse proxy
+        icon: traefik.png
+        widget:
+          type: traefik
+          url: https://tf.rp5.beansrn.com
+    - Komodo:
+        href: https://km.beansrn.com
+        description: Container orchestration
+        icon: komodo.png
+
+- Apps:
+    - Home Assistant:
+        href: https://ha.beansrn.com
+        description: Home automation
+        icon: home-assistant.png
+        widget:
+          type: homeassistant
+          url: https://ha.beansrn.com
+          key: "{{HOMEPAGE_VAR_HA_TOKEN}}"
+    - Vaultwarden:
+        href: https://vw.beansrn.com
+        description: Password manager
+        icon: vaultwarden.png
