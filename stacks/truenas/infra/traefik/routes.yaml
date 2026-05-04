@@ -11,4 +11,4 @@ http:
     truenas:
       loadBalancer:
         servers:
-          - url: "http://nas.beansrn.com:81"
+          - url: "http://host.docker.internal:81"
