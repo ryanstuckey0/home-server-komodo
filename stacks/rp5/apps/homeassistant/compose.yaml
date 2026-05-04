@@ -12,3 +12,12 @@ services:
       - /run/dbus:/run/dbus:ro
     environment:
       TZ: America/New_York
+
+  matter-server:
+    image: ghcr.io/home-assistant-libs/python-matter-server:stable
+    container_name: matter-server
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - /opt/appdata/matter-server:/data
+      - /run/dbus:/run/dbus:ro
