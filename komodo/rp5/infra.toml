@@ -1,5 +1,5 @@
 [[stack]]
-name = "traefik"
+name = "traefik-rp5"
 description = "Traefik reverse proxy"
 
 [stack.config]
