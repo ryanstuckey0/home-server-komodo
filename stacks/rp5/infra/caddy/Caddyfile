@@ -20,6 +20,9 @@
 
   @adguard host ag.beansrn.com
   handle @adguard {
-    reverse_proxy adguard-home:80
+    reverse_proxy adguard-home:80 {
+      header_up X-Forwarded-Proto https
+      header_up X-Real-IP {remote_host}
+    }
   }
 }
