@@ -2,6 +2,9 @@
   acme_dns cloudflare {env.CF_DNS_API_TOKEN}
 }
 
-nas.beansrn.com {
-  reverse_proxy host.docker.internal:81
+*.beansrn.com {
+  @nas host nas.beansrn.com
+  handle @nas {
+    reverse_proxy host.docker.internal:81
+  }
 }

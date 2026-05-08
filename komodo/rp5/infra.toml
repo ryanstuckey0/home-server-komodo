@@ -1,4 +1,17 @@
 [[stack]]
+name = "caddy-rp5"
+description = "Caddy reverse proxy"
+
+[stack.config]
+server = "rp5"
+file_paths = ["stacks/rp5/infra/caddy/compose.yaml"]
+repo = "ryanstuckey0/home-server-komodo"
+branch = "main"
+environment = """
+CF_DNS_API_TOKEN = [[CF_DNS_API_TOKEN]]
+"""
+
+[[stack]]
 name = "traefik-rp5"
 description = "Traefik reverse proxy"
 
