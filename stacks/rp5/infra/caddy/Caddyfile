@@ -17,4 +17,9 @@
   handle @vaultwarden {
     reverse_proxy vaultwarden:80
   }
+
+  @adguard host ag.beansrn.com
+  handle @adguard {
+    reverse_proxy adguard-home:80
+  }
 }
