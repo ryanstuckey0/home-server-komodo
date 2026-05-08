@@ -5,7 +5,7 @@
 *.beansrn.com {
   @komodo host km.beansrn.com
   handle @komodo {
-    reverse_proxy host.docker.internal:9120
+    reverse_proxy core:9120
   }
 
   @homeassistant host ha.beansrn.com
