@@ -10,14 +10,8 @@ services:
       - SIGNUPS_ALLOWED=false
       - ADMIN_TOKEN=${VAULTWARDEN_ADMIN_TOKEN}
     networks:
-      - traefik_default
-    labels:
-      traefik.enable: "true"
-      traefik.docker.network: "traefik_default"
-      traefik.http.routers.vaultwarden.rule: "Host(`vw.beansrn.com`)"
-      traefik.http.routers.vaultwarden.entrypoints: "websecure"
-      traefik.http.services.vaultwarden.loadbalancer.server.port: "80"
+      - caddy_default
 
 networks:
-  traefik_default:
+  caddy_default:
     external: true
