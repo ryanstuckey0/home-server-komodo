@@ -1,0 +1,22 @@
+services:
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    container_name: jellyfin
+    restart: unless-stopped
+    ports:
+      - "7359:7359/udp"
+    volumes:
+      - /mnt/pool01/appdata/jellyfin/config:/config
+      - /mnt/pool01/appdata/jellyfin/cache:/cache
+      - /mnt/pool01/media:/media:ro
+    devices:
+      - /dev/dri:/dev/dri
+    group_add:
+      - "render"
+      - "video"
+    networks:
+      - caddy_default
+
+networks:
+  caddy_default:
+    external: true
