@@ -6,13 +6,14 @@ services:
     ports:
       - "7359:7359/udp"
     volumes:
-      - /mnt/pool01/appdata/jellyfin/config:/config
-      - /mnt/pool01/appdata/jellyfin/cache:/cache
+      - /mnt/pool01/appdata/jellyfin/config:/config      # pool01 HDD, replicated (recordsize=8K, compression=lz4)
+      - /mnt/pool02/jellyfin/cache:/cache                # pool02 NVMe (compression=lz4)
+      - /mnt/pool02/jellyfin/transcode:/cache/transcodes # pool02 NVMe (recordsize=1M, sync=disabled)
       - /mnt/pool01/media:/media:ro
     devices:
       - /dev/dri:/dev/dri
     group_add:
-      - "render"
+      - "107"  # render GID on TrueNAS host (/dev/dri/renderD128)
       - "video"
     networks:
       - caddy_default
