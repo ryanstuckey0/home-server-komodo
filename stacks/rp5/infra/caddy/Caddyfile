@@ -20,7 +20,7 @@
 
   @adguard host ag.beansrn.com
   handle @adguard {
-    reverse_proxy adguard-home:80 {
+    reverse_proxy host.docker.internal:3000 {
       header_up X-Forwarded-Proto https
       header_up X-Real-IP {remote_host}
     }

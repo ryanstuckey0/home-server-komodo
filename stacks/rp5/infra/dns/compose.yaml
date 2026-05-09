@@ -37,26 +37,13 @@ services:
     image: adguard/adguardhome:latest
     container_name: adguard-home
     restart: unless-stopped
+    network_mode: host
     depends_on:
       - unbound-lan
       - unbound-ts
     volumes:
       - /opt/appdata/adguard/work:/opt/adguardhome/work
       - /opt/appdata/adguard/conf:/opt/adguardhome/conf
-
-    ports:
-      # DNS (TCP + UDP) - LAN and Tailscale
-      - "53:53/tcp"
-      - "53:53/udp"
-
-      # AdGuard setup wizard (only needed on first run; can be removed after)
-      # - "3000:3000/tcp"
-      # - "81:80/tcp" # Only needed if Caddy is not routing
-
-    networks:
-      caddy_default:
-      dns_internal:
-        ipv4_address: 10.10.10.2
 
 networks:
   caddy_default:
