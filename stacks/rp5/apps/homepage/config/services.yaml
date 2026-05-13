@@ -8,17 +8,19 @@
           url: https://ag.beansrn.com
           username: "{{HOMEPAGE_VAR_ADGUARD_USERNAME}}"
           password: "{{HOMEPAGE_VAR_ADGUARD_PASSWORD}}"
-    - Traefik:
-        href: https://tf.rp5.beansrn.com
-        description: Reverse proxy
-        icon: traefik.png
-        widget:
-          type: traefik
-          url: https://tf.rp5.beansrn.com
     - Komodo:
         href: https://km.beansrn.com
         description: Container orchestration
         icon: komodo.png
+    - TrueNAS:
+        href: https://nas.beansrn.com
+        description: NAS storage
+        icon: truenas-scale.png
+        widget:
+          type: truenas
+          url: https://nas.beansrn.com
+          key: "{{HOMEPAGE_VAR_TRUENAS_API_KEY}}"
+          enablePools: true
 
 - Apps:
     - Home Assistant:
@@ -33,3 +35,12 @@
         href: https://vw.beansrn.com
         description: Password manager
         icon: vaultwarden.png
+    - Jellyfin:
+        href: https://jf.beansrn.com
+        description: Media server
+        icon: jellyfin.png
+        widget:
+          type: jellyfin
+          url: https://jf.beansrn.com
+          key: "{{HOMEPAGE_VAR_JELLYFIN_API_KEY}}"
+          enableBlocks: true
