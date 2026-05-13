@@ -27,6 +27,7 @@ services:
     environment:
       - GLANCES_OPT=-w --disable-webui
     volumes:
+      - ./glances.conf:/glances/conf/glances.conf:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
       - default
