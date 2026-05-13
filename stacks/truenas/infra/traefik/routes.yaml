@@ -1,0 +1,15 @@
+http:
+  routers:
+    truenas:
+      rule: "Host(`nas.beansrn.com`)"
+      entryPoints:
+        - websecure
+      service: truenas
+      tls:
+        certResolver: letsencrypt
+
+  services:
+    truenas:
+      loadBalancer:
+        servers:
+          - url: "http://host.docker.internal:81"

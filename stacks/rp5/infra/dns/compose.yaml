@@ -6,7 +6,7 @@ services:
     volumes:
       - ./unbound-lan.conf:/opt/unbound/etc/unbound/unbound.conf:ro
     networks:
-      traefik_default:
+      caddy_default:
       dns_internal:
         ipv4_address: 10.10.10.3
     healthcheck:
@@ -23,7 +23,7 @@ services:
     volumes:
       - ./unbound-ts.conf:/opt/unbound/etc/unbound/unbound.conf:ro
     networks:
-      traefik_default:
+      caddy_default:
       dns_internal:
         ipv4_address: 10.10.10.4
     healthcheck:
@@ -37,6 +37,7 @@ services:
     image: adguard/adguardhome:latest
     container_name: adguard-home
     restart: unless-stopped
+    network_mode: host
     depends_on:
       - unbound-lan
       - unbound-ts
@@ -44,29 +45,8 @@ services:
       - /opt/appdata/adguard/work:/opt/adguardhome/work
       - /opt/appdata/adguard/conf:/opt/adguardhome/conf
 
-    ports:
-      # DNS (TCP + UDP) - LAN and Tailscale
-      - "53:53/tcp"
-      - "53:53/udp"
-
-      # AdGuard setup wizard (only needed on first run; can be removed after)
-      # - "3000:3000/tcp"
-      # - "81:80/tcp" # Only needed if Traefik is not routing
-
-    networks:
-      traefik_default:
-      dns_internal:
-        ipv4_address: 10.10.10.2
-
-    labels:
-      traefik.enable: "true"
-      traefik.docker.network: "traefik_default"
-      traefik.http.routers.adguard.rule: "Host(`ag.beansrn.com`)"
-      traefik.http.routers.adguard.entrypoints: "websecure"
-      traefik.http.services.adguard.loadbalancer.server.port: "80"
-
 networks:
-  traefik_default:
+  caddy_default:
     external: true
   dns_internal:
     internal: true

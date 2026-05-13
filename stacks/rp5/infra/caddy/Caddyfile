@@ -1,0 +1,28 @@
+{
+  acme_dns cloudflare {env.CF_DNS_API_TOKEN}
+}
+
+*.beansrn.com {
+  @komodo host km.beansrn.com
+  handle @komodo {
+    reverse_proxy core:9120
+  }
+
+  @homeassistant host ha.beansrn.com
+  handle @homeassistant {
+    reverse_proxy host.docker.internal:8123
+  }
+
+  @vaultwarden host vw.beansrn.com
+  handle @vaultwarden {
+    reverse_proxy vaultwarden:80
+  }
+
+  @adguard host ag.beansrn.com
+  handle @adguard {
+    reverse_proxy host.docker.internal:3000 {
+      header_up X-Forwarded-Proto https
+      header_up X-Real-IP {remote_host}
+    }
+  }
+}

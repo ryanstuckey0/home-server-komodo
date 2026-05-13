@@ -29,8 +29,11 @@ services:
     restart: unless-stopped
     depends_on:
       - mongo
-    ports:
-      - 9120:9120
+    # ports:
+    #   - 9120:9120 # uncomment to access Komodo directly if Caddy is down
+    networks:
+      - default
+      - caddy_default
     env_file: ./compose.env
     environment:
       KOMODO_DATABASE_ADDRESS: mongo:27017
@@ -80,3 +83,8 @@ volumes:
   mongo-config:
   # Core / Periphery
   keys:
+
+networks:
+  default:
+  caddy_default:
+    external: true

@@ -1,0 +1,15 @@
+{
+  acme_dns cloudflare {env.CF_DNS_API_TOKEN}
+}
+
+*.beansrn.com {
+  @nas host nas.beansrn.com
+  handle @nas {
+    reverse_proxy host.docker.internal:81
+  }
+
+  @jellyfin host jf.beansrn.com
+  handle @jellyfin {
+    reverse_proxy jellyfin:8096
+  }
+}
