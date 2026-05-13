@@ -20,3 +20,20 @@ branch = "main"
 environment = """
 VAULTWARDEN_ADMIN_TOKEN = [[VAULTWARDEN_ADMIN_TOKEN]]
 """
+
+[[stack]]
+name = "homepage"
+description = "Homepage dashboard with Glances system stats"
+
+[stack.config]
+server = "rp5"
+file_paths = ["stacks/rp5/apps/homepage/compose.yaml"]
+repo = "ryanstuckey0/home-server-komodo"
+branch = "main"
+environment = """
+HOMEPAGE_VAR_ADGUARD_USERNAME = [[HOMEPAGE_VAR_ADGUARD_USERNAME]]
+HOMEPAGE_VAR_ADGUARD_PASSWORD = [[HOMEPAGE_VAR_ADGUARD_PASSWORD]]
+HOMEPAGE_VAR_HA_TOKEN = [[HOMEPAGE_VAR_HA_TOKEN]]
+HOMEPAGE_VAR_TRUENAS_API_KEY = [[HOMEPAGE_VAR_TRUENAS_API_KEY]]
+HOMEPAGE_VAR_JELLYFIN_API_KEY = [[HOMEPAGE_VAR_JELLYFIN_API_KEY]]
+"""

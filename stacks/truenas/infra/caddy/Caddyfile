@@ -12,4 +12,9 @@
   handle @jellyfin {
     reverse_proxy jellyfin:8096
   }
+
+  @glances host glances-nas.beansrn.com
+  handle @glances {
+    reverse_proxy glances:61208
+  }
 }

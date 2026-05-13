@@ -1,0 +1,33 @@
+services:
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    restart: unless-stopped
+    environment:
+      - HOMEPAGE_VAR_ADGUARD_USERNAME=${HOMEPAGE_VAR_ADGUARD_USERNAME}
+      - HOMEPAGE_VAR_ADGUARD_PASSWORD=${HOMEPAGE_VAR_ADGUARD_PASSWORD}
+      - HOMEPAGE_VAR_HA_TOKEN=${HOMEPAGE_VAR_HA_TOKEN}
+      - HOMEPAGE_VAR_TRUENAS_API_KEY=${HOMEPAGE_VAR_TRUENAS_API_KEY}
+      - HOMEPAGE_VAR_JELLYFIN_API_KEY=${HOMEPAGE_VAR_JELLYFIN_API_KEY}
+    volumes:
+      - ./config:/app/config
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - caddy_default
+
+  glances:
+    image: nicolargo/glances:latest-full
+    container_name: glances
+    restart: unless-stopped
+    privileged: true
+    pid: host
+    environment:
+      - GLANCES_OPT=-w --disable-webui
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - default
+
+networks:
+  caddy_default:
+    external: true
