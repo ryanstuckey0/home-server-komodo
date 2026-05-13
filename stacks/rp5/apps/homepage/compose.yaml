@@ -5,6 +5,7 @@ services:
     restart: unless-stopped
     environment:
       - HOMEPAGE_ALLOWED_HOSTS=home.beansrn.com
+      - NODE_OPTIONS=--dns-result-order=ipv4first
       - HOMEPAGE_VAR_ADGUARD_USERNAME=${HOMEPAGE_VAR_ADGUARD_USERNAME}
       - HOMEPAGE_VAR_ADGUARD_PASSWORD=${HOMEPAGE_VAR_ADGUARD_PASSWORD}
       - HOMEPAGE_VAR_HA_TOKEN=${HOMEPAGE_VAR_HA_TOKEN}
