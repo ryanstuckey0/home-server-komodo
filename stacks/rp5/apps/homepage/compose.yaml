@@ -4,6 +4,7 @@ services:
     container_name: homepage
     restart: unless-stopped
     environment:
+      - HOMEPAGE_ALLOWED_HOSTS=home.beansrn.com
       - HOMEPAGE_VAR_ADGUARD_USERNAME=${HOMEPAGE_VAR_ADGUARD_USERNAME}
       - HOMEPAGE_VAR_ADGUARD_PASSWORD=${HOMEPAGE_VAR_ADGUARD_PASSWORD}
       - HOMEPAGE_VAR_HA_TOKEN=${HOMEPAGE_VAR_HA_TOKEN}
