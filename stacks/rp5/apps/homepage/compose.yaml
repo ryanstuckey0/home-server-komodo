@@ -12,6 +12,8 @@ services:
     volumes:
       - ./config:/app/config
       - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - caddy_default
 
   glances:
     image: nicolargo/glances:latest-full
@@ -27,4 +29,5 @@ services:
       - default
 
 networks:
-  default: {}
+  caddy_default:
+    external: true
