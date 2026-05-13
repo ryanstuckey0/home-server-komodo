@@ -11,6 +11,8 @@ services:
       - HOMEPAGE_VAR_HA_TOKEN=${HOMEPAGE_VAR_HA_TOKEN}
       - HOMEPAGE_VAR_TRUENAS_API_KEY=${HOMEPAGE_VAR_TRUENAS_API_KEY}
       - HOMEPAGE_VAR_JELLYFIN_API_KEY=${HOMEPAGE_VAR_JELLYFIN_API_KEY}
+    dns:
+      - 192.168.1.2
     volumes:
       - ./config:/app/config
       - /var/run/docker.sock:/var/run/docker.sock:ro
@@ -27,6 +29,7 @@ services:
     environment:
       - GLANCES_OPT=-w --disable-webui
     volumes:
+      - ./glances.conf:/glances/conf/glances.conf:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
       - default
