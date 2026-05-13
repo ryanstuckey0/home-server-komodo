@@ -12,6 +12,20 @@
         href: https://km.beansrn.com
         description: Container orchestration
         icon: komodo.png
+    - RP5 System:
+        description: rp5 system resources
+        icon: glances.png
+        widget:
+          type: glances
+          url: http://glances:61208
+          metric: info
+    - NAS System:
+        description: TrueNAS system resources
+        icon: glances.png
+        widget:
+          type: glances
+          url: https://glances-nas.beansrn.com
+          metric: info
     - TrueNAS:
         href: https://nas.beansrn.com
         description: NAS storage
