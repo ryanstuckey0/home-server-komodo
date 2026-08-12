@@ -1,0 +1,23 @@
+services:
+  syncthing:
+    image: syncthing/syncthing:latest
+    container_name: syncthing
+    restart: unless-stopped
+    hostname: syncthing-nas   # shown to other Syncthing devices
+    environment:
+      - PUID=1000   # adjust to the user that owns /mnt/pool01/docs
+      - PGID=1000
+      - STGUIADDRESS=0.0.0.0:8384   # expose GUI to the Caddy container
+    volumes:
+      - /mnt/pool01/appdata/syncthing:/var/syncthing/config
+      - /mnt/pool01/docs/games/satisfactory/blueprints:/data/satisfactory-blueprints
+    ports:
+      - "22000:22000/tcp"   # sync protocol
+      - "22000:22000/udp"   # sync protocol (QUIC)
+      - "21027:21027/udp"   # LAN discovery broadcasts
+    networks:
+      - caddy_default
+
+networks:
+  caddy_default:
+    external: true

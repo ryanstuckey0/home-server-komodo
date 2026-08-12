@@ -37,3 +37,13 @@ HOMEPAGE_VAR_HA_TOKEN = [[HOMEPAGE_VAR_HA_TOKEN]]
 HOMEPAGE_VAR_TRUENAS_API_KEY = [[HOMEPAGE_VAR_TRUENAS_API_KEY]]
 HOMEPAGE_VAR_JELLYFIN_API_KEY = [[HOMEPAGE_VAR_JELLYFIN_API_KEY]]
 """
+
+[[stack]]
+name = "syncthing"
+description = "Syncthing file sync (always-on hub node for Satisfactory blueprints)"
+
+[stack.config]
+server = "rp5"
+file_paths = ["stacks/rp5/apps/syncthing/compose.yaml"]
+repo = "ryanstuckey0/home-server-komodo"
+branch = "main"
