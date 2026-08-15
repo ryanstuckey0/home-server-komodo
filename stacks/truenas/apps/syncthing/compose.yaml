@@ -5,8 +5,8 @@ services:
     restart: unless-stopped
     hostname: syncthing-nas   # shown to other Syncthing devices
     environment:
-      - PUID=1000   # adjust to the user that owns /mnt/pool01/docs
-      - PGID=1000
+      - PUID=568   # TrueNAS 'apps' user; granted access to the blueprint folder via NFSv4 ACL (no ownership change to the docs dataset)
+      - PGID=568
       - STGUIADDRESS=0.0.0.0:8384   # expose GUI to the Caddy container
     volumes:
       - /mnt/pool01/appdata/syncthing:/var/syncthing/config
