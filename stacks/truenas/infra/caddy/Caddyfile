@@ -17,4 +17,12 @@
   handle @glances {
     reverse_proxy glances:61208
   }
+
+  @syncthing host st-nas.beansrn.com
+  handle @syncthing {
+    reverse_proxy syncthing:8384 {
+      header_up X-Forwarded-Proto https
+      header_up X-Real-IP {remote_host}
+    }
+  }
 }

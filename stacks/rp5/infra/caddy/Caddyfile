@@ -30,4 +30,12 @@
   handle @homepage {
     reverse_proxy homepage:3000
   }
+
+  @syncthing host st.beansrn.com
+  handle @syncthing {
+    reverse_proxy syncthing:8384 {
+      header_up X-Forwarded-Proto https
+      header_up X-Real-IP {remote_host}
+    }
+  }
 }
