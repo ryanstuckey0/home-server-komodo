@@ -10,11 +10,6 @@ services:
       - STGUIADDRESS=0.0.0.0:8384   # expose GUI to the Caddy container
     volumes:
       - /mnt/pool01/appdata/syncthing:/var/syncthing/config
-      # Mount the whole satisfactory/ dir so blueprints + saves + future
-      # subfolders share one mount; set each Syncthing folder path to
-      # /data/satisfactory/<name> (matches the RP5 node's paths).
-      # The NFSv4 ACL granting apps(568) must cover each synced subfolder
-      # (currently blueprints); grant it on .../satisfactory to cover all.
       - /mnt/pool01/docs/games/satisfactory:/data/satisfactory
     ports:
       - "22000:22000/tcp"   # sync protocol
