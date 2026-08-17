@@ -10,7 +10,9 @@ services:
       - STGUIADDRESS=0.0.0.0:8384   # expose GUI to the Caddy container
     volumes:
       - /opt/appdata/syncthing/config:/var/syncthing/config
-      - /opt/appdata/syncthing/data:/data/satisfactory-blueprints
+      # Generic data root; add each Syncthing folder as a subdir, e.g. set the
+      # folder path to /data/satisfactory/blueprints (host: .../data/satisfactory/blueprints).
+      - /opt/appdata/syncthing/data:/data
     ports:
       - "22000:22000/tcp"   # sync protocol (forward on the router for direct connections)
       - "22000:22000/udp"   # sync protocol (QUIC)
