@@ -10,7 +10,7 @@ services:
       - STGUIADDRESS=0.0.0.0:8384   # expose GUI to the Caddy container
     volumes:
       - /mnt/pool01/appdata/syncthing:/var/syncthing/config
-      - /mnt/pool01/docs/games/satisfactory/blueprints:/data/satisfactory-blueprints
+      - /mnt/pool01/docs/games/satisfactory:/data/satisfactory
     ports:
       - "22000:22000/tcp"   # sync protocol
       - "22000:22000/udp"   # sync protocol (QUIC)
