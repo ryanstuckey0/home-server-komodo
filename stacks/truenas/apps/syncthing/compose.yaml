@@ -5,7 +5,7 @@ services:
     restart: unless-stopped
     hostname: syncthing-nas   # shown to other Syncthing devices
     environment:
-      - PUID=3003   # dedicated 'syncthing' service user; granted access to the sync folder via NFSv4 ACL (no ownership change to the docs dataset)
+      - PUID=3003   # dedicated 'syncthing' service user
       - PGID=3003
       - STGUIADDRESS=0.0.0.0:8384   # expose GUI to the Caddy container
     volumes:
