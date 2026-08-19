@@ -7,6 +7,9 @@ services:
     privileged: true
     volumes:
       - /opt/appdata/homeassistant:/config
+      # Version-controlled declarative config, deployed from git by Komodo.
+      # Overlaid read-only on top of the writable /config state volume above.
+      - ./config/packages:/config/packages:ro
       - /etc/localtime:/etc/localtime:ro
       - /run/dbus:/run/dbus:ro
     environment:
