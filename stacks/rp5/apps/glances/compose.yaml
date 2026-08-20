@@ -1,7 +1,9 @@
 services:
   glances:
     image: nicolargo/glances:latest-full
+    container_name: glances-rp5
     restart: always
+    privileged: true
     pid: host
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock

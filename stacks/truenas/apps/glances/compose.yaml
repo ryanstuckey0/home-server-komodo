@@ -1,15 +1,15 @@
 services:
   glances:
     image: nicolargo/glances:latest-full
-    container_name: glances
-    restart: unless-stopped
+    container_name: glances-nas
+    restart: always
     privileged: true
     pid: host
-    environment:
-      - GLANCES_OPT=-w --disable-webui
     volumes:
-      - ./glances.conf:/glances/conf/glances.conf:ro
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /etc/os-release:/etc/os-release:ro
+    environment:
+      - "GLANCES_OPT=-w"
     networks:
       - caddy_default
 
