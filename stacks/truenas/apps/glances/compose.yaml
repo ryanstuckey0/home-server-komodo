@@ -8,6 +8,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /etc/os-release:/etc/os-release:ro
+      - ./glances.conf:/glances/conf/glances.conf:ro
     environment:
       - "GLANCES_OPT=-w"
     networks:
