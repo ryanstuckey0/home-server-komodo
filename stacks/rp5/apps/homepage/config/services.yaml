@@ -40,7 +40,7 @@
       icon: glances.png
       widget:
         type: glances
-        url: https://glances-nas.beansrn.com
+        url: https://glances.nas.beansrn.com
         metric: info
   - TrueNAS:
       href: https://nas.beansrn.com
