@@ -30,7 +30,8 @@
         showStacks: true # optional, default: false
   - RP5 System:
       description: rp5 system resources
-      icon: glances.png
+      href: https://glances.rp5.beansrn.com
+      icon: raspberry-pi.png
       widget:
         type: glances
         version: 4
@@ -38,7 +39,8 @@
         metric: info
   - NAS System:
       description: TrueNAS system resources
-      icon: glances.png
+      href: https://glances.nas.beansrn.com
+      icon: truenas.png
       widget:
         type: glances
         version: 4
