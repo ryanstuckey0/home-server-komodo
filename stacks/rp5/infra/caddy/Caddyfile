@@ -2,7 +2,7 @@
   acme_dns cloudflare {env.CF_DNS_API_TOKEN}
 }
 
-*.beansrn.com {
+*.beansrn.com, *.rp5.beansrn.com {
   @komodo host km.beansrn.com
   handle @komodo {
     reverse_proxy core:9120
@@ -31,7 +31,7 @@
     reverse_proxy homepage:3000
   }
 
-  @syncthing host st.beansrn.com
+  @syncthing host st.rp5.beansrn.com
   handle @syncthing {
     reverse_proxy syncthing:8384 {
       header_up X-Forwarded-Proto https

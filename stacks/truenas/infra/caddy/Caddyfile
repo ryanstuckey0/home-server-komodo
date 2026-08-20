@@ -2,7 +2,7 @@
   acme_dns cloudflare {env.CF_DNS_API_TOKEN}
 }
 
-*.beansrn.com {
+*.beansrn.com, *.nas.beansrn.com {
   @nas host nas.beansrn.com
   handle @nas {
     reverse_proxy host.docker.internal:81
@@ -13,12 +13,12 @@
     reverse_proxy jellyfin:8096
   }
 
-  @glances host glances-nas.beansrn.com
+  @glances host glances.nas.beansrn.com
   handle @glances {
     reverse_proxy glances:61208
   }
 
-  @syncthing host st-nas.beansrn.com
+  @syncthing host st.nas.beansrn.com
   handle @syncthing {
     reverse_proxy syncthing:8384 {
       header_up X-Forwarded-Proto https
