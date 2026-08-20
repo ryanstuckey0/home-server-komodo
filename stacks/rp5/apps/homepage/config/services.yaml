@@ -1,4 +1,13 @@
 - Infrastructure:
+  - Unifi Dream Router 7:
+      href: https://unifi.ui.com
+      icon: unifi-dark.png
+      widget:
+        type: unifi
+        url: https://192.168.1.1
+        username: "{{HOMEPAGE_VAR_UNIFI_USERNAME}}"
+        password: "{{HOMEPAGE_VAR_UNIFI_PASSWORD}}"
+        verify-ssl: false
   - AdGuard Home:
       href: https://ag.beansrn.com
       description: DNS filtering & ad blocking
