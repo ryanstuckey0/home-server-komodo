@@ -34,6 +34,7 @@
       icon: raspberry-pi.png
       widget:
         type: glances
+        version: 4
         url: http://glances:61208
         metric: info
   - NAS System:
@@ -42,6 +43,7 @@
       icon: truenas.png
       widget:
         type: glances
+        version: 4
         url: https://glances.nas.beansrn.com
         metric: info
   - TrueNAS:

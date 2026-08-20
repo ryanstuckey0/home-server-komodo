@@ -51,3 +51,13 @@ server = "rp5"
 file_paths = ["stacks/rp5/apps/syncthing/compose.yaml"]
 repo = "ryanstuckey0/home-server-komodo"
 branch = "main"
+
+[[stack]]
+name = "glances-rp5"
+description = "Glances system stats for RP5"
+
+[stack.config]
+server = "rp5"
+file_paths = ["stacks/rp5/apps/glances/compose.yaml"]
+repo = "ryanstuckey0/home-server-komodo"
+branch = "main"

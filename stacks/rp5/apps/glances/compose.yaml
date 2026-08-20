@@ -1,7 +1,7 @@
 services:
   glances:
     image: nicolargo/glances:latest-full
-    container_name: glances-nas
+    container_name: glances-rp5
     restart: always
     privileged: true
     pid: host
