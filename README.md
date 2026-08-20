@@ -3,6 +3,7 @@
 ## Helpful Docs
 
 - [Home Assistant in Docker Compose](https://www.home-assistant.io/installation/alternative/#docker-compose)
+- [Dashboard Icons](https://dashboardicons.com)
 
 ## Hardware
 
