@@ -38,4 +38,9 @@
       header_up X-Real-IP {remote_host}
     }
   }
+
+  @glances host glances.rp5.beansrn.com
+  handle @glances {
+    reverse_proxy glances:61208
+  }
 }

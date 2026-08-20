@@ -21,24 +21,8 @@ services:
       - ./config:/app/config
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
-      - default
       - caddy_default
 
-  glances:
-    image: nicolargo/glances:latest-full
-    container_name: glances
-    restart: unless-stopped
-    privileged: true
-    pid: host
-    environment:
-      - GLANCES_OPT=-w --disable-webui
-    volumes:
-      - ./glances.conf:/glances/conf/glances.conf:ro
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-    networks:
-      - default
-
 networks:
-  default: {}
   caddy_default:
     external: true

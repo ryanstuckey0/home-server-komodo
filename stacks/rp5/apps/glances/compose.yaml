@@ -1,0 +1,16 @@
+services:
+  glances:
+    image: nicolargo/glances:latest-full
+    restart: always
+    pid: host
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /etc/os-release:/etc/os-release:ro
+    environment:
+      - "GLANCES_OPT=-w"
+    networks:
+      - caddy_default
+
+networks:
+  caddy_default:
+    external: true
