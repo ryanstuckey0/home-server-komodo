@@ -41,9 +41,7 @@
 
 ### Reverse Proxy
 
-Both hosts use [Caddy](https://caddyserver.com/) as their reverse proxy (replacing the
-earlier Traefik setup, whose config is retained under `stacks/*/infra/traefik/` for
-reference but is no longer deployed). Each host runs its own Caddy instance serving a
+Both hosts use [Caddy](https://caddyserver.com/) as their reverse proxy. Each host runs its own Caddy instance serving a
 wildcard `*.beansrn.com` certificate obtained via the Cloudflare DNS-01 challenge
 (requires `CF_DNS_API_TOKEN`).
 
