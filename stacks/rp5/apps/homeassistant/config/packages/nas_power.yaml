@@ -1,0 +1,59 @@
+# NAS power control
+#
+# Exposes a single `switch.nas` entity:
+#   ON  -> powers on the smart plug; the NAS BIOS ("Restore on AC Power Loss =
+#          Power On") auto-boots the box when mains power returns.
+#   OFF -> asks TrueNAS to shut down gracefully via its REST API, waits for the
+#          NAS to stop responding to ping, then cuts the smart plug so the next
+#          ON re-triggers the BIOS auto-boot.
+#
+# Version-controlled and deployed from git by Komodo. The API key lives in
+# HA's /config/secrets.yaml (NOT tracked in git) as `truenas_api_key`.
+#
+# One-time setup:
+#   1. TerraMaster BIOS: "Restore on AC Power Loss = Power On".
+#   2. TrueNAS UI -> API Keys -> add one, then in HA secrets.yaml:
+#        truenas_api_key: "Bearer 1-your-long-api-key-here"
+#   3. Set nas_plug_entity below to your real smart-plug entity_id.
+
+# --- adjust to your smart plug -------------------------------------------------
+# Replace switch.nas_plug (two places below) with your plug's entity_id.
+
+rest_command:
+  truenas_shutdown:
+    url: "https://nas.beansrn.com/api/v2.0/system/shutdown"
+    method: POST
+    headers:
+      authorization: !secret truenas_api_key
+      content-type: "application/json"
+    payload: "{}"
+
+command_line:
+  - binary_sensor:
+      name: "NAS Online"
+      command: "ping -c 2 -W 2 192.168.1.3"
+      device_class: connectivity
+      scan_interval: 30
+
+template:
+  - switch:
+      - name: "NAS"
+        unique_id: nas_power
+        state: "{{ is_state('binary_sensor.nas_online', 'on') }}"
+        turn_on:
+          - action: switch.turn_on
+            target:
+              entity_id: switch.nas_plug
+        turn_off:
+          # a) graceful OS shutdown
+          - action: rest_command.truenas_shutdown
+          # b) wait until it stops answering ping (max 3 min)
+          - wait_template: "{{ is_state('binary_sensor.nas_online', 'off') }}"
+            timeout: "00:03:00"
+            continue_on_timeout: false   # shutdown failed -> leave plug ON, don't risk data
+          # c) buffer for disks to spin down / rails to settle
+          - delay: "00:00:20"
+          # d) cut mains so the next ON re-triggers BIOS auto-boot
+          - action: switch.turn_off
+            target:
+              entity_id: switch.nas_plug
