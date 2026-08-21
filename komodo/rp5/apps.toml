@@ -61,3 +61,13 @@ server = "rp5"
 file_paths = ["stacks/rp5/apps/glances/compose.yaml"]
 repo = "ryanstuckey0/home-server-komodo"
 branch = "main"
+
+[[stack]]
+name = "cup"
+description = "Docker container update status"
+
+[stack.config]
+server = "rp5"
+file_paths = ["stacks/rp5/apps/cup/compose.yaml"]
+repo = "ryanstuckey0/home-server-komodo"
+branch = "main"

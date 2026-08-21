@@ -25,4 +25,9 @@
       header_up X-Real-IP {remote_host}
     }
   }
+
+  @cup host cup.nas.beansrn.com
+  handle @cup {
+    reverse_proxy cup:8000
+  }
 }
