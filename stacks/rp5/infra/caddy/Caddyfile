@@ -43,4 +43,9 @@
   handle @glances {
     reverse_proxy glances:61208
   }
+
+  @cup host cup.beansrn.com
+  handle @cup {
+    reverse_proxy cup:8000
+  }
 }

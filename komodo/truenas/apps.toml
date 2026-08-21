@@ -27,3 +27,13 @@ server = "truenas"
 file_paths = ["stacks/truenas/apps/syncthing/compose.yaml"]
 repo = "ryanstuckey0/home-server-komodo"
 branch = "main"
+
+[[stack]]
+name = "cup"
+description = "Docker container update status"
+
+[stack.config]
+server = "truenas"
+file_paths = ["stacks/truenas/apps/cup/compose.yaml"]
+repo = "ryanstuckey0/home-server-komodo"
+branch = "main"
