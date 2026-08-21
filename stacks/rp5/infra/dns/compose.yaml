@@ -1,6 +1,6 @@
 services:
   unbound-lan:
-    image: mvance/unbound-rpi:latest
+    image: mvance/unbound-rpi:1.22.0
     container_name: unbound-lan
     restart: unless-stopped
     volumes:
@@ -17,7 +17,7 @@ services:
       start_period: 30s
 
   unbound-ts:
-    image: mvance/unbound-rpi:latest
+    image: mvance/unbound-rpi:1.22.0
     container_name: unbound-ts
     restart: unless-stopped
     volumes:
@@ -34,7 +34,7 @@ services:
       start_period: 30s
 
   adguard-home:
-    image: adguard/adguardhome:latest
+    image: adguard/adguardhome:v0.107.79
     container_name: adguard-home
     restart: unless-stopped
     network_mode: host
