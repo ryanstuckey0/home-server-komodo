@@ -1,6 +1,6 @@
 services:
   homeassistant:
-    image: ghcr.io/home-assistant/home-assistant:stable
+    image: ghcr.io/home-assistant/home-assistant:2026.8.2
     container_name: homeassistant
     restart: unless-stopped
     network_mode: host
@@ -13,7 +13,7 @@ services:
       TZ: America/New_York
 
   matter-server:
-    image: ghcr.io/home-assistant-libs/python-matter-server:stable
+    image: ghcr.io/home-assistant-libs/python-matter-server:8.1.0
     container_name: matter-server
     restart: unless-stopped
     network_mode: host

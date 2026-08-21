@@ -1,6 +1,6 @@
 services:
   syncthing:
-    image: syncthing/syncthing:latest
+    image: syncthing/syncthing:2.1.3
     container_name: syncthing
     restart: unless-stopped
     hostname: syncthing-rp5   # shown to other Syncthing devices
