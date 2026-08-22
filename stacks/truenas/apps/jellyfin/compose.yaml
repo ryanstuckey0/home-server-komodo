@@ -6,10 +6,10 @@ services:
     ports:
       - "7359:7359/udp"
     volumes:
-      - /mnt/pool01/appdata/jellyfin/config:/config      # pool01 HDD, replicated (recordsize=8K, compression=lz4)
-      - /mnt/pool02/jellyfin/cache:/cache                # pool02 NVMe (compression=lz4)
-      - /mnt/pool02/jellyfin/transcode:/cache/transcodes # pool02 NVMe (recordsize=1M, sync=disabled)
-      - /mnt/pool01/media:/media:ro
+      - /mnt/pool02/apps/appdata/jellyfin/config:/config          # pool02 NVMe, backed up (recordsize=16K, compression=lz4, sync=standard)
+      - /mnt/pool02/apps/temp/jellyfin/cache:/cache               # pool02 NVMe, scratch (recordsize=128K, compression=lz4, sync=standard)
+      - /mnt/pool02/apps/temp/jellyfin/transcodes:/cache/transcodes # pool02 NVMe, scratch (recordsize=1M, compression=off, sync=disabled)
+      - /mnt/pool01/media:/media:ro                               # pool01 HDD (media library)
     devices:
       - /dev/dri:/dev/dri
     group_add:
