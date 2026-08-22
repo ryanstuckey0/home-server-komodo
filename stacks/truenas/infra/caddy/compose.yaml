@@ -8,7 +8,7 @@ services:
       - "443:443/udp"
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
-      - /mnt/pool01/appdata/caddy:/data
+      - /mnt/pool02/apps/appdata/caddy:/data   # pool02 NVMe, backed up (recordsize=128K, compression=lz4, sync=standard)
     environment:
       - CF_DNS_API_TOKEN=${CF_DNS_API_TOKEN}
     extra_hosts:
