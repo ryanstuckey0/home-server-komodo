@@ -10,7 +10,7 @@ services:
       - STGUIADDRESS=0.0.0.0:8384   # expose GUI to the Caddy container
     volumes:
       - /mnt/pool02/apps/appdata/syncthing:/var/syncthing/config   # pool02 NVMe, backed up (recordsize=128K, compression=lz4, sync=standard)
-      - /mnt/pool01/docs/games/satisfactory:/data/satisfactory     # pool01 HDD (synced user data, not appdata)
+      - /mnt/pool01/users/ryanstuckey/games/saves/satisfactory:/data/satisfactory   # pool01 HDD (synced user data)
     ports:
       - "22000:22000/tcp"   # sync protocol
       - "22000:22000/udp"   # sync protocol (QUIC)
