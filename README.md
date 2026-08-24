@@ -10,7 +10,8 @@
 - Raspberry Pi 5 (RP5)
   - M.2 Hat containing 1TB SSD
 - TerraMaster F4-425 Plus (NAS)
-  - 2X Seagate IronWolf 8TB NAS HDDs
+  - 2X Seagate IronWolf 8TB NAS HDDs (`pool01`)
+  - M.2 NVMe SSD (`pool02`) — app working data
 - Ubiquiti UniFi Dream Router 7
   - Ubiquiti Flex Mini 2.5G 5-Port Switch
 
@@ -70,3 +71,69 @@ curl -sSL https://raw.githubusercontent.com/moghtech/komodo/main/scripts/setup-p
   --connect-as="$(hostname)" \
   --onboarding-key="O_O2R1dwB3TaCH0L3u3Ko97hYx0Nni_O"
 ```
+
+### Storage (TrueNAS)
+
+Two ZFS pools on the NAS:
+
+- **`pool01`** — 2X 8TB IronWolf HDD. Bulk data (Jellyfin media library, per-user data) and, going forward, the destination for app backups.
+- **`pool02`** — NVMe SSD. App working data (config + cache), so services run off the faster disk.
+
+App data is namespaced under `pool02/apps`, split into **`appdata/`** (persistent config — the
+backup source of record) and **`temp/`** (disposable scratch — never backed up). ZFS tuning is
+applied only on the specific dataset that needs it; parents stay at defaults so new siblings don't
+inherit special settings.
+
+```
+/mnt/pool02/apps/
+  appdata/                     persistent config  (back this up)
+    jellyfin/config            recordsize=16K
+    caddy/                     (plain dir, inherits)
+    syncthing/                 (plain dir, inherits)
+  temp/                        disposable scratch (never backed up)
+    jellyfin/cache/            (plain dir, inherits)
+    jellyfin/transcodes/       recordsize=1M, compression=off, sync=disabled
+```
+
+Baseline properties are set once on `pool02/apps` (`atime=off`, `compression=lz4`, `sync=standard`,
+default 128K recordsize) and inherited down. Only two datasets override the baseline:
+
+| Dataset                                  | recordsize | compression | sync     | Why                                              |
+| ---------------------------------------- | ---------- | ----------- | -------- | ------------------------------------------------ |
+| `pool02/apps`                            | 128K       | lz4         | standard | Baseline inherited by everything below           |
+| `pool02/apps/appdata/jellyfin/config`    | **16K**    | lz4         | standard | Jellyfin SQLite DBs — small random writes        |
+| `pool02/apps/temp/jellyfin/transcodes`   | **1M**     | **off**     | **disabled** | Large, transient, already-compressed segments |
+
+`caddy`, `syncthing`, and `temp/jellyfin/cache` are plain directories inheriting their parent
+(128K/lz4). `atime=off` applies everywhere via the baseline.
+
+**Datasets vs directories:** a dataset is created only where it needs distinct tuning (or is a
+snapshot/backup boundary). Structural parents (`apps`, `appdata`, `temp`, `jellyfin`) are datasets
+so ZFS can nest the tuned leaves, and so `pool02/apps/appdata` can be snapshotted/replicated as a
+single backup root.
+
+#### Per-user data (`pool01`)
+
+User data is organized by user and kept separate from the SSH login home:
+
+```
+/mnt/pool01/
+  home/<user>/       SSH login home (.ssh, dotfiles) — do NOT mix bulk data here
+  users/<user>/      per-user data root (dataset)
+    games/saves/     Syncthing-synced game saves (e.g. Satisfactory blueprints)
+    games/roms/      console ROM backups
+    docs/            Nextcloud data (planned)
+  media/             Jellyfin library
+```
+
+- `pool01/users` and `pool01/users/<user>` are datasets (the per-user snapshot / backup / quota
+  boundary); `games`, `saves`, `roms`, `docs` are plain dirs inheriting them.
+- `saves/satisfactory/blueprints` is owned by the `syncthing` service account (uid 3003). Its
+  wrapper dir is given group-traverse for that account (`chgrp 3003 satisfactory && chmod 710`) so
+  the single Syncthing daemon can reach it without opening it to every user.
+
+#### Backups (planned)
+
+App config on the `pool02` SSD is to be backed up to the `pool01` HDD (and offsite) via
+restic/backrest, using a pre-backup hook that stops each app so its database is copied cold /
+quiesced. `pool02/apps/temp` is intentionally excluded (regenerable scratch).
