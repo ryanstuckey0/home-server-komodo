@@ -35,9 +35,11 @@
 | Vaultwarden    | RP5      | vw.beansrn.com         | Runs on RP5; database backed up regularly to NAS                                                                                                                                                                                                     |
 | Homepage       | RP5      | home.beansrn.com       | Dashboard                                                                                                                                                                                                                                            |
 | Syncthing      | RP5      | st.rp5.beansrn.com     | Always-on hub node for file sync (Satisfactory blueprints)                                                                                                                                                                                           |
+| Cup            | RP5      | cup.beansrn.com        | Docker image update checker (server); aggregates the NAS agent for a combined view                                                                                                                                                                   |
 | TrueNAS Scale  | NAS      | nas.beansrn.com        |                                                                                                                                                                                                                                                     |
 | Jellyfin       | NAS      | jf.beansrn.com         |                                                                                                                                                                                                                                                     |
 | Glances        | NAS      | glances.nas.beansrn.com | System monitoring                                                                                                                                                                                                                                    |
+| Cup            | NAS      | cup.nas.beansrn.com    | Cup agent; reports NAS container image updates to the RP5 instance                                                                                                                                                                                   |
 | Syncthing      | NAS      | st.nas.beansrn.com     | Redundant/backup sync node (only up when NAS is powered on)                                                                                                                                                                                          |
 
 ### Reverse Proxy
@@ -62,14 +64,14 @@ curl -sSL https://raw.githubusercontent.com/moghtech/komodo/main/scripts/setup-p
 sudo python3 setup-periphery.py \
   --core-address="http://192.168.1.2:9120" \
   --connect-as="$(hostname)" \
-  --onboarding-key="O_O2R1dwB3TaCH0L3u3Ko97hYx0Nni_O"
+  --onboarding-key="ONBOARDING KEY HERE"
 ```
 ```bash
 curl -sSL https://raw.githubusercontent.com/moghtech/komodo/main/scripts/setup-periphery.py \
   | python3 - --user \
   --core-address="http://192.168.1.2:9120" \
   --connect-as="$(hostname)" \
-  --onboarding-key="O_O2R1dwB3TaCH0L3u3Ko97hYx0Nni_O"
+  --onboarding-key="ONBOARDING KEY HERE"
 ```
 
 ### Storage (TrueNAS)
